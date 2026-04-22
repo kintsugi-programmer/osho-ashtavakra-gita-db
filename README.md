@@ -1,6 +1,12 @@
 # osho-ashtavakra-gita-db
 
+- https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset
 - https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db
+
+<p align="center">
+  <img src="image-1.webp" height="150px" style="object-fit: contain;" />
+  <img src="image.png" height="150px" style="object-fit: contain;" />
+</p>
 
 A structured, AI-ready dataset of Ashtavakra Gita teachings based on the discourses of Osho, designed for search, analysis, and intelligent systems.
 
