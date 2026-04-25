@@ -1,7 +1,8 @@
 # The Osho's Ashtavakra Gita Project
 
-- https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset
-- https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db
+- 🌐 **Live: https://oshogita.sbali.tech**
+- 📊 Kaggle: https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset
+- 💻 GitHub: https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db
 
 <p align="center">
   <img src="image-1.webp" height="150px" style="object-fit: contain;" />

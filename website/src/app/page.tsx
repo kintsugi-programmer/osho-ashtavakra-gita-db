@@ -102,6 +102,13 @@ export default function Home() {
 
           <div className="flex flex-wrap gap-2 md:gap-4 justify-center px-4">
             <a
+              href="#chapters"
+              className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full text-sm font-medium hover:from-amber-600 hover:to-orange-600 transition-all shadow-md hover:shadow-lg min-w-[160px]"
+            >
+              <span className="hidden sm:inline">Read All Lessons</span>
+              <span className="sm:hidden">Read Lessons</span>
+            </a>
+            <a
               href="#features"
               className="px-4 md:px-6 py-2.5 md:py-3 bg-stone-800 text-white rounded-full text-sm font-medium hover:bg-stone-900 transition-colors min-w-[140px]"
             >
@@ -115,14 +122,6 @@ export default function Home() {
               className="px-4 md:px-6 py-2.5 md:py-3 border border-stone-300 rounded-full text-sm hover:border-stone-400 transition-colors min-w-[100px]"
             >
               GitHub
-            </a>
-            <a
-              href="https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 md:px-6 py-2.5 md:py-3 border border-stone-300 rounded-full text-sm hover:border-stone-400 transition-colors min-w-[100px]"
-            >
-              Kaggle
             </a>
           </div>
         </section>
@@ -153,6 +152,18 @@ export default function Home() {
 }`}</pre>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section id="chapters" className="border-t border-stone-200 py-12 md:py-20 bg-gradient-to-b from-white to-amber-50/30">
+          <div className="max-w-5xl mx-auto px-4 md:px-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-center mb-4">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-600 to-amber-600">91 Lessons</span>
+            </h2>
+            <p className="text-stone-500 text-center mb-8 md:mb-12 max-w-lg mx-auto">
+              Dive into the profound wisdom of Ashtavakra MahaGita through 91 transformative chapters
+            </p>
+            <ChaptersTable />
           </div>
         </section>
 
