@@ -28,6 +28,7 @@ const stages = [
 ];
 
 import Image from "next/image";
+import ChaptersTable from "@/components/ChaptersTable";
 
 export default function Home() {
   return (
@@ -40,6 +41,7 @@ export default function Home() {
           </div>
           <nav className="flex gap-6 text-sm text-stone-500">
             <a href="#about" className="hover:text-stone-800 transition-colors">About</a>
+            <a href="#chapters" className="hover:text-stone-800 transition-colors">91 Lessons</a>
             <a href="#features" className="hover:text-stone-800 transition-colors">Features</a>
             <a href="#roadmap" className="hover:text-stone-800 transition-colors">Roadmap</a>
             <a href="https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db" target="_blank" rel="noopener noreferrer" className="hover:text-stone-800 transition-colors">GitHub</a>
@@ -188,6 +190,13 @@ export default function Home() {
               <span className="text-stone-300">→</span>
               <span className="text-amber-600">AI SYSTEM</span>
             </div>
+          </div>
+        </section>
+
+        <section id="chapters" className="border-t border-stone-200 py-16">
+          <div className="max-w-5xl mx-auto px-6">
+            <h2 className="text-3xl font-light tracking-tight mb-12 text-center">91 Lessons</h2>
+            <ChaptersTable />
           </div>
         </section>
       </main>
