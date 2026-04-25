@@ -126,19 +126,12 @@ def process_chapter(chapter_no: int, force=False):
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     out_file = OUT_DIR / f"ch{chapter_no:02d}.json"
 
+    # Skip if already exists and not forced
     if out_file.exists() and not force:
-        existing = json.loads(out_file.read_text(encoding="utf-8"))
-        chunks, has_changes = merge_chunks(existing, new_chunks)
-        mode = "merged"
-        
-        if not has_changes:
-            print(f"{len(new_chunks)} chunks | {sum(c['word_count'] for c in new_chunks)} words | unchanged")
-            return {"chapter": chapter_no, "chunks": len(new_chunks), "words": sum(c['word_count'] for c in new_chunks)}
-    else:
-        chunks = new_chunks
-        mode = "overwritten" if force else "new"
-        has_changes = True
+        print(f"{len(new_chunks)} chunks | {sum(c['word_count'] for c in new_chunks)} words | skipped (use --force to overwrite)")
+        return None
 
+    chunks = new_chunks
     out_file.write_text(
         json.dumps(chunks, ensure_ascii=False, indent=2),
         encoding="utf-8"
@@ -146,7 +139,7 @@ def process_chapter(chapter_no: int, force=False):
 
     total_words = sum(c["word_count"] for c in chunks)
 
-    print(f"{len(chunks)} chunks | {total_words} words | {mode}")
+    print(f"{len(chunks)} chunks | {total_words} words | new")
 
     return {
         "chapter": chapter_no,
