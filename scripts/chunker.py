@@ -81,19 +81,28 @@ def chunk_text(text: str, chapter_no: int):
 def merge_chunks(existing, new_chunks):
     existing_map = {c["id"]: c for c in existing}
     merged = []
+    has_changes = False
 
     for chunk in new_chunks:
         cid = chunk["id"]
 
         if cid in existing_map:
             old = existing_map[cid]
+            old_text_en = old.get("text_en")
+            old_status = old.get("translation_status", "pending")
 
-            chunk["text_en"] = old.get("text_en")
-            chunk["translation_status"] = old.get("translation_status", "pending")
+            # Check if we need to preserve (don't overwrite if already translated)
+            if old_text_en is not None:
+                chunk["text_en"] = old_text_en
+                chunk["translation_status"] = old_status
+                has_changes = True
+            else:
+                chunk["text_en"] = old_text_en
+                chunk["translation_status"] = old_status
 
         merged.append(chunk)
 
-    return merged
+    return merged, has_changes
 
 
 # ─────────────────────────────────────────────
@@ -119,11 +128,16 @@ def process_chapter(chapter_no: int, force=False):
 
     if out_file.exists() and not force:
         existing = json.loads(out_file.read_text(encoding="utf-8"))
-        chunks = merge_chunks(existing, new_chunks)
+        chunks, has_changes = merge_chunks(existing, new_chunks)
         mode = "merged"
+        
+        if not has_changes:
+            print(f"{len(new_chunks)} chunks | {sum(c['word_count'] for c in new_chunks)} words | unchanged")
+            return {"chapter": chapter_no, "chunks": len(new_chunks), "words": sum(c['word_count'] for c in new_chunks)}
     else:
         chunks = new_chunks
         mode = "overwritten" if force else "new"
+        has_changes = True
 
     out_file.write_text(
         json.dumps(chunks, ensure_ascii=False, indent=2),
