@@ -151,8 +151,11 @@ Use this exact prompt for AI-based translation:
 Translate all chunks where text_en is null.
 
 Strict rules:
+- Translate all chunks where text_en is null
 - Do NOT use scripts, tools, libraries, or external translators
-- Perform translation directly using the model (in-place edit)
+- Do NOT use any APIs for translation
+- Perform translation manually, chunk by chunk, directly using the model
+- Take your time - be thorough and careful with each chunk
 - Do NOT change JSON structure
 - Do NOT modify text_hi
 - Write translation into text_en
