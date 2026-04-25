@@ -53,6 +53,16 @@ export default function ChaptersTable() {
 
   return (
     <div className="space-y-6">
+      {/* Guided instruction text */}
+      <div className="text-center px-4">
+        <p className="text-stone-600 text-sm md:text-base">
+          Click any chapter below to read its verses
+        </p>
+        <p className="text-stone-400 text-xs mt-1">
+          Use ← → arrows or buttons to navigate between lessons
+        </p>
+      </div>
+
       <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-sm px-4">
         <span className="text-stone-500">{chapters.length} / 91</span>
         <span className="text-stone-300 hidden sm:inline">•</span>
@@ -77,10 +87,10 @@ export default function ChaptersTable() {
                 className="py-2 md:py-4 px-1 md:px-2 text-center text-xs text-stone-400 bg-stone-100/50 border border-dashed border-stone-300 rounded md:rounded-lg cursor-pointer hover:bg-amber-100 hover:border-amber-400 hover:text-amber-700 hover:border-double transition-all group"
               >
                 <span className="hidden sm:inline">
-                  <span className="block text-[10px] text-stone-400 group-hover:text-amber-600">Q</span>
+                  <span className="block text-[10px] text-stone-400 group-hover:text-amber-600">Ch. {num}</span>
                   <span className="block text-[9px] mt-0.5 uppercase tracking-wider opacity-60 group-hover:opacity-100">Coming Soon</span>
                 </span>
-                <span className="sm:hidden font-medium">{num}</span>
+                <span className="sm:hidden font-medium">Ch. {num}</span>
               </button>
             );
           }
@@ -92,8 +102,8 @@ export default function ChaptersTable() {
               className="py-2 md:py-4 px-1 md:px-2 text-center text-xs text-white bg-gradient-to-br from-green-500 to-emerald-600 rounded md:rounded-lg shadow-sm hover:shadow-md hover:scale-105 hover:brightness-110 transition-all cursor-pointer group"
             >
               <span className="font-medium">
-                <span className="hidden sm:inline">Chapter </span>
-                <span className="sm:hidden">{num}</span>
+                <span className="hidden sm:inline">Ch. {num}</span>
+                <span className="sm:hidden">Ch. {num}</span>
               </span>
               <div className="text-[10px] md:text-xs opacity-75 mt-0.5 hidden md:block">{ch.chunks} verses</div>
             </button>
