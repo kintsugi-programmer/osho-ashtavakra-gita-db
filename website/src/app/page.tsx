@@ -232,12 +232,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="chapters" className="border-t border-stone-200 py-8 md:py-16">
-          <div className="max-w-5xl mx-auto px-4 md:px-6">
-            <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-8 md:mb-12 text-center">91 Lessons</h2>
-            <ChaptersTable />
-          </div>
-        </section>
       </main>
 
       <footer className="border-t border-stone-200">
