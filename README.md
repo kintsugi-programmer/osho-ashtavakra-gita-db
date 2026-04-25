@@ -1,4 +1,4 @@
-# osho-ashtavakra-gita-db
+# project osho-ashtavakra-gita db
 
 - https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset
 - https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db
