@@ -17,6 +17,7 @@ interface ChapterModalProps {
   isOpen: boolean;
   onClose: () => void;
   onNavigate: (chapter: number) => void;
+  chaptersData?: { chapter: number; chunks: number }[];
 }
 
 type ViewMode = "both" | "hindi" | "english";
@@ -26,16 +27,21 @@ export default function ChapterModal({
   isOpen,
   onClose,
   onNavigate,
+  chaptersData = [],
 }: ChapterModalProps) {
+  // Check if chapter has data
+  const chapterInfo = chaptersData.find((c) => c.chapter === chapterNumber);
+  const hasData = !!chapterInfo;
   const [chunks, setChunks] = useState<Chunk[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>("both");
   const [activeTab, setActiveTab] = useState<"hindi" | "english">("hindi");
 
-  // Fetch chapter data
+  // Fetch chapter data only if chapter has data
   useEffect(() => {
-    if (!isOpen || !chapterNumber) return;
+    if (!isOpen || !chapterNumber || !hasData) return;
 
+    setChunks([]);
     setLoading(true);
     fetch(`/data/ch${chapterNumber.toString().padStart(2, "0")}.json`)
       .then((res) => res.json())
@@ -44,7 +50,7 @@ export default function ChapterModal({
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [isOpen, chapterNumber]);
+  }, [isOpen, chapterNumber, hasData]);
 
   // Handle ESC key
   useEffect(() => {
@@ -208,7 +214,44 @@ export default function ChapterModal({
 
       {/* Content Area */}
       <div className="flex-1 overflow-y-auto">
-        {loading ? (
+        {!hasData ? (
+          /* Coming Soon state */
+          <div className="flex flex-col items-center justify-center h-full p-8">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center mb-6">
+              <span className="text-4xl">🙏</span>
+            </div>
+            <h2 className="text-xl md:text-2xl font-light text-stone-700 mb-2">
+              Chapter {chapterNumber}
+            </h2>
+            <p className="text-stone-500 mb-4">Coming Soon</p>
+            <div className="flex items-center gap-2 text-sm text-stone-400 mb-8">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              <span>In Progress</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={handlePrevChapter}
+                disabled={chapterNumber <= 1}
+                className="p-2 hover:bg-stone-100 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                aria-label="Previous chapter"
+              >
+                <svg className="w-5 h-5 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={handleNextChapter}
+                disabled={chapterNumber >= 91}
+                className="p-2 hover:bg-stone-100 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                aria-label="Next chapter"
+              >
+                <svg className="w-5 h-5 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        ) : loading ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-stone-400">Loading chapter {chapterNumber}...</div>
           </div>
@@ -216,9 +259,9 @@ export default function ChapterModal({
           <div className="p-3 md:p-4 space-y-3 md:space-y-4">
             {/* Hindi Only View */}
             {viewMode === "hindi" && chunks.map((chunk) => (
-              <div key={chunk.id} className="bg-stone-50 rounded-lg p-3 md:p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs text-stone-400">Chunk {chunk.chunk_index}</span>
+              <div key={chunk.id} className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
+                  <span className="text-xs font-medium text-amber-600">Verse {chunk.chunk_index}</span>
                   <span className="text-xs text-stone-400">{chunk.word_count} words</span>
                 </div>
                 <p className="text-base md:text-lg leading-relaxed text-stone-800 font-serif">
@@ -229,9 +272,9 @@ export default function ChapterModal({
 
             {/* English Only View */}
             {viewMode === "english" && chunks.map((chunk) => (
-              <div key={chunk.id} className="bg-stone-50 rounded-lg p-3 md:p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs text-stone-400">Chunk {chunk.chunk_index}</span>
+              <div key={chunk.id} className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
+                  <span className="text-xs font-medium text-amber-600">Verse {chunk.chunk_index}</span>
                   <span className="text-xs text-stone-400">{chunk.word_count} words</span>
                 </div>
                 <p className="text-base md:text-lg leading-relaxed text-stone-700">
@@ -242,15 +285,15 @@ export default function ChapterModal({
 
             {/* Both View - Stack of horizontal pairs */}
             {viewMode === "both" && chunks.map((chunk) => (
-              <div key={chunk.id} className="space-y-2 md:space-y-3">
-                <div className="flex items-center gap-2 px-1">
-                  <span className="text-xs font-medium text-amber-600">Chunk {chunk.chunk_index}</span>
+              <div key={chunk.id} className="space-y-3">
+                <div className="flex items-center gap-2 px-1 ml-1">
+                  <span className="text-xs font-medium text-amber-600">Verse {chunk.chunk_index}</span>
                   <span className="text-xs text-stone-300">•</span>
                   <span className="text-xs text-stone-400">{chunk.word_count} words</span>
                 </div>
-                <div className="grid md:grid-cols-2 gap-2 md:gap-3">
-                  <div className="bg-stone-50 rounded-lg p-3 md:p-4">
-                    <div className="flex items-center gap-1.5 mb-2">
+                <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+                  <div className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
+                    <div className="flex items-center gap-1.5 mb-3 pb-2 border-b border-stone-200">
                       <span className="text-sm">📜</span>
                       <span className="text-xs font-medium text-stone-500">Hindi</span>
                     </div>
@@ -258,8 +301,8 @@ export default function ChapterModal({
                       {chunk.text_hi}
                     </p>
                   </div>
-                  <div className="bg-stone-50 rounded-lg p-3 md:p-4">
-                    <div className="flex items-center gap-1.5 mb-2">
+                  <div className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
+                    <div className="flex items-center gap-1.5 mb-3 pb-2 border-b border-stone-200">
                       <span className="text-sm">📖</span>
                       <span className="text-xs font-medium text-stone-500">English</span>
                     </div>

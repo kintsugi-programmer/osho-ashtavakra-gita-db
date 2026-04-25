@@ -27,6 +27,8 @@ export default function ChaptersTable() {
     const ch = chapterMap.get(chapterNum);
     if (ch) {
       setSelectedChapter(chapterNum);
+    } else {
+      alert(`Chapter ${chapterNum} - Coming Soon!`);
     }
   };
 
@@ -69,13 +71,17 @@ export default function ChaptersTable() {
 
           if (!exists) {
             return (
-              <div
+              <button
                 key={num}
-                className="py-2 md:py-4 px-1 md:px-2 text-center text-xs text-stone-300 bg-stone-100 rounded md:rounded-lg"
+                onClick={() => handleChapterClick(num)}
+                className="py-2 md:py-4 px-1 md:px-2 text-center text-xs text-stone-400 bg-stone-100/50 border border-dashed border-stone-300 rounded md:rounded-lg cursor-pointer hover:bg-amber-100 hover:border-amber-400 hover:text-amber-700 hover:border-double transition-all group"
               >
-                <span className="hidden sm:inline">Ch. {num}</span>
-                <span className="sm:hidden">{num}</span>
-              </div>
+                <span className="hidden sm:inline">
+                  <span className="block text-[10px] text-stone-400 group-hover:text-amber-600">Q</span>
+                  <span className="block text-[9px] mt-0.5 uppercase tracking-wider opacity-60 group-hover:opacity-100">Coming Soon</span>
+                </span>
+                <span className="sm:hidden font-medium">{num}</span>
+              </button>
             );
           }
 
@@ -83,13 +89,13 @@ export default function ChaptersTable() {
             <button
               key={num}
               onClick={() => handleChapterClick(num)}
-              className="py-2 md:py-4 px-1 md:px-2 text-center text-xs text-white bg-gradient-to-br from-green-500 to-emerald-600 rounded md:rounded-lg shadow-sm hover:shadow-md hover:scale-105 transition-all cursor-pointer"
+              className="py-2 md:py-4 px-1 md:px-2 text-center text-xs text-white bg-gradient-to-br from-green-500 to-emerald-600 rounded md:rounded-lg shadow-sm hover:shadow-md hover:scale-105 hover:brightness-110 transition-all cursor-pointer group"
             >
               <span className="font-medium">
                 <span className="hidden sm:inline">Chapter </span>
                 <span className="sm:hidden">{num}</span>
               </span>
-              <div className="text-[10px] md:text-xs opacity-75 mt-0.5 hidden md:block">{ch.chunks}</div>
+              <div className="text-[10px] md:text-xs opacity-75 mt-0.5 hidden md:block">{ch.chunks} verses</div>
             </button>
           );
         })}
@@ -101,6 +107,7 @@ export default function ChaptersTable() {
         isOpen={selectedChapter !== null}
         onClose={handleClose}
         onNavigate={handleNavigate}
+        chaptersData={chapters}
       />
     </div>
   );
