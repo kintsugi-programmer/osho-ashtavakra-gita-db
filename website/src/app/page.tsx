@@ -100,28 +100,34 @@ export default function Home() {
             Designed for semantic search, AI/LLM applications, knowledge graph construction, and bilingual study.
           </p>
 
-          <div className="flex flex-wrap gap-2 md:gap-4 justify-center px-4">
+          <div className="flex flex-wrap gap-2 md:gap-3 justify-center px-4">
             <a
               href="#chapters"
-              className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full text-sm font-medium hover:from-amber-600 hover:to-orange-600 transition-all shadow-md hover:shadow-lg min-w-[160px]"
+              className="px-5 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full text-sm font-medium hover:from-amber-600 hover:to-orange-600 transition-all shadow-md hover:shadow-lg"
             >
-              <span className="hidden sm:inline">Read All Lessons</span>
-              <span className="sm:hidden">Read Lessons</span>
+              <span>Read Lessons</span>
             </a>
             <a
               href="#features"
-              className="px-4 md:px-6 py-2.5 md:py-3 bg-stone-800 text-white rounded-full text-sm font-medium hover:bg-stone-900 transition-colors min-w-[140px]"
+              className="px-5 md:px-6 py-2.5 md:py-3 bg-stone-800 text-white rounded-full text-sm font-medium hover:bg-stone-900 transition-colors"
             >
-              <span className="hidden sm:inline">Explore Features</span>
-              <span className="sm:hidden">Features</span>
+              <span>Features</span>
+            </a>
+            <a
+              href="https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 md:px-6 py-2.5 md:py-3 border border-stone-300 text-stone-700 rounded-full text-sm font-medium hover:border-stone-400 hover:bg-stone-50 transition-colors"
+            >
+              <span>Kaggle Data</span>
             </a>
             <a
               href="https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 md:px-6 py-2.5 md:py-3 border border-stone-300 rounded-full text-sm hover:border-stone-400 transition-colors min-w-[100px]"
+              className="px-5 md:px-6 py-2.5 md:py-3 border border-stone-300 text-stone-700 rounded-full text-sm font-medium hover:border-stone-400 hover:bg-stone-50 transition-colors"
             >
-              GitHub
+              <span>GitHub Code</span>
             </a>
           </div>
         </section>
