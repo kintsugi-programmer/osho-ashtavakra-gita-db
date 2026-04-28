@@ -1,6 +1,41 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => setCopied(false), 1500);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="p-1.5 hover:bg-stone-200 rounded-md transition-colors"
+      aria-label="Copy to clipboard"
+      title={copied ? "Copied!" : "Copy"}
+    >
+      {copied ? (
+        <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+      ) : (
+        <svg className="w-4 h-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+      )}
+    </button>
+  );
+}
 
 interface Chunk {
   id: string;
@@ -262,7 +297,10 @@ export default function ChapterModal({
               <div key={chunk.id} className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
                 <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
                   <span className="text-xs font-medium text-amber-600">Verse {chunk.chunk_index}</span>
-                  <span className="text-xs text-stone-400">{chunk.word_count} words</span>
+                  <div className="flex items-center gap-2">
+                    <CopyButton text={chunk.text_hi} />
+                    <span className="text-xs text-stone-400">{chunk.word_count} words</span>
+                  </div>
                 </div>
                 <p className="text-base md:text-lg leading-relaxed text-stone-800 font-serif">
                   {chunk.text_hi}
@@ -275,7 +313,10 @@ export default function ChapterModal({
               <div key={chunk.id} className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
                 <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
                   <span className="text-xs font-medium text-amber-600">Verse {chunk.chunk_index}</span>
-                  <span className="text-xs text-stone-400">{chunk.word_count} words</span>
+                  <div className="flex items-center gap-2">
+                    <CopyButton text={chunk.text_en} />
+                    <span className="text-xs text-stone-400">{chunk.word_count} words</span>
+                  </div>
                 </div>
                 <p className="text-base md:text-lg leading-relaxed text-stone-700">
                   {chunk.text_en}
@@ -293,18 +334,24 @@ export default function ChapterModal({
                 </div>
                 <div className="grid md:grid-cols-2 gap-3 md:gap-4">
                   <div className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
-                    <div className="flex items-center gap-1.5 mb-3 pb-2 border-b border-stone-200">
-                      <span className="text-sm">📜</span>
-                      <span className="text-xs font-medium text-stone-500">Hindi</span>
+                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-sm">📜</span>
+                        <span className="text-xs font-medium text-stone-500">Hindi</span>
+                      </div>
+                      <CopyButton text={chunk.text_hi} />
                     </div>
                     <p className="text-base md:text-lg leading-relaxed text-stone-800 font-serif">
                       {chunk.text_hi}
                     </p>
                   </div>
                   <div className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
-                    <div className="flex items-center gap-1.5 mb-3 pb-2 border-b border-stone-200">
-                      <span className="text-sm">📖</span>
-                      <span className="text-xs font-medium text-stone-500">English</span>
+                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-sm">📖</span>
+                        <span className="text-xs font-medium text-stone-500">English</span>
+                      </div>
+                      <CopyButton text={chunk.text_en} />
                     </div>
                     <p className="text-base md:text-lg leading-relaxed text-stone-700">
                       {chunk.text_en}
