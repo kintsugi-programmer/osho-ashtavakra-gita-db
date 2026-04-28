@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
+import { ThemeToggle } from "./ThemeProvider";
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -126,10 +127,10 @@ export default function ChapterModal({
 
   const totalWords = chunks.reduce((sum, ch) => sum + (ch.word_count || 0), 0);
 
-  return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-white">
+return (
+    <div className="fixed inset-0 z-50 flex flex-col bg-white dark:bg-stone-900">
       {/* Header - Fixed */}
-      <header className="flex-shrink-0 flex items-center justify-between px-3 md:px-4 py-2 md:py-3 bg-white border-b border-stone-200">
+      <header className="flex-shrink-0 flex items-center justify-between px-3 md:px-4 py-2 md:py-3 bg-white dark:bg-stone-900 border-b border-stone-200 dark:border-stone-700">
         <div className="flex items-center gap-2 md:gap-3">
           {/* Close Button */}
           <button
@@ -145,10 +146,10 @@ export default function ChapterModal({
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex-shrink-0" />
             <div>
-              <h1 className="text-sm md:text-base font-medium text-stone-800">
+              <h1 className="text-sm md:text-base font-medium text-stone-800 dark:text-stone-100">
                 Chapter {chapterNumber}
               </h1>
-              <p className="text-xs text-stone-500 hidden sm:block">
+              <p className="text-xs text-stone-500 dark:text-stone-400 hidden sm:block">
                 {chunks.length} chunks • ~{totalWords} words
               </p>
             </div>
@@ -156,11 +157,11 @@ export default function ChapterModal({
         </div>
 
         {/* View Toggle - Hidden on mobile */}
-        <div className="hidden md:flex items-center gap-1 bg-stone-100 rounded-lg p-1">
+        <div className="hidden md:flex items-center gap-1 bg-stone-100 dark:bg-stone-800 rounded-lg p-1">
           <button
             onClick={() => setViewMode("both")}
             className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
-              viewMode === "both" ? "bg-white shadow text-stone-800" : "text-stone-500 hover:text-stone-700"
+              viewMode === "both" ? "bg-white dark:bg-stone-700 shadow text-stone-800 dark:text-stone-100" : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
             }`}
           >
             Both
@@ -168,7 +169,7 @@ export default function ChapterModal({
           <button
             onClick={() => setViewMode("hindi")}
             className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
-              viewMode === "hindi" ? "bg-white shadow text-stone-800" : "text-stone-500 hover:text-stone-700"
+              viewMode === "hindi" ? "bg-white dark:bg-stone-700 shadow text-stone-800 dark:text-stone-100" : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
             }`}
           >
             Hindi
@@ -176,7 +177,7 @@ export default function ChapterModal({
           <button
             onClick={() => setViewMode("english")}
             className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
-              viewMode === "english" ? "bg-white shadow text-stone-800" : "text-stone-500 hover:text-stone-700"
+              viewMode === "english" ? "bg-white dark:bg-stone-700 shadow text-stone-800 dark:text-stone-100" : "text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
             }`}
           >
             English
@@ -185,6 +186,7 @@ export default function ChapterModal({
 
         {/* Navigation */}
         <div className="flex items-center gap-1">
+          <ThemeToggle />
           <button
             onClick={handlePrevChapter}
             disabled={chapterNumber <= 1}
@@ -214,13 +216,13 @@ export default function ChapterModal({
       </header>
 
       {/* Mobile Tab Bar - Only visible on mobile */}
-      <div className="md:hidden flex-shrink-0 flex border-b border-stone-200 bg-stone-50">
+      <div className="md:hidden flex-shrink-0 flex border-b border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-800">
         <button
           onClick={() => { setViewMode("both"); setActiveTab("hindi"); }}
           className={`flex-1 py-2 text-sm font-medium transition-colors ${
             viewMode === "both"
-              ? "text-amber-600 border-b-2 border-amber-500 bg-white"
-              : "text-stone-500"
+              ? "text-amber-600 border-b-2 border-amber-500 bg-white dark:bg-stone-700"
+              : "text-stone-500 dark:text-stone-400"
           }`}
         >
           Both
@@ -229,8 +231,8 @@ export default function ChapterModal({
           onClick={() => { setViewMode("hindi"); setActiveTab("hindi"); }}
           className={`flex-1 py-2 text-sm font-medium transition-colors ${
             viewMode === "hindi"
-              ? "text-amber-600 border-b-2 border-amber-500 bg-white"
-              : "text-stone-500"
+              ? "text-amber-600 border-b-2 border-amber-500 bg-white dark:bg-stone-700"
+              : "text-stone-500 dark:text-stone-400"
           }`}
         >
           Hindi Only
@@ -239,8 +241,8 @@ export default function ChapterModal({
           onClick={() => { setViewMode("english"); setActiveTab("english"); }}
           className={`flex-1 py-2 text-sm font-medium transition-colors ${
             viewMode === "english"
-              ? "text-amber-600 border-b-2 border-amber-500 bg-white"
-              : "text-stone-500"
+              ? "text-amber-600 border-b-2 border-amber-500 bg-white dark:bg-stone-700"
+              : "text-stone-500 dark:text-stone-400"
           }`}
         >
           English Only
@@ -294,15 +296,15 @@ export default function ChapterModal({
           <div className="p-3 md:p-4 space-y-3 md:space-y-4">
             {/* Hindi Only View */}
             {viewMode === "hindi" && chunks.map((chunk) => (
-              <div key={chunk.id} className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
-                <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
+              <div key={chunk.id} className="bg-stone-50 dark:bg-stone-800 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100 dark:border-stone-700">
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200 dark:border-stone-600">
                   <span className="text-xs font-medium text-amber-600">Verse {chunk.chunk_index}</span>
                   <div className="flex items-center gap-2">
                     <CopyButton text={chunk.text_hi} />
                     <span className="text-xs text-stone-400">{chunk.word_count} words</span>
                   </div>
                 </div>
-                <p className="text-base md:text-lg leading-relaxed text-stone-800 font-serif">
+                <p className="text-base md:text-lg leading-relaxed text-stone-800 dark:text-stone-100 font-serif">
                   {chunk.text_hi}
                 </p>
               </div>
@@ -310,15 +312,15 @@ export default function ChapterModal({
 
             {/* English Only View */}
             {viewMode === "english" && chunks.map((chunk) => (
-              <div key={chunk.id} className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
-                <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
+              <div key={chunk.id} className="bg-stone-50 dark:bg-stone-800 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100 dark:border-stone-700">
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200 dark:border-stone-600">
                   <span className="text-xs font-medium text-amber-600">Verse {chunk.chunk_index}</span>
                   <div className="flex items-center gap-2">
                     <CopyButton text={chunk.text_en} />
                     <span className="text-xs text-stone-400">{chunk.word_count} words</span>
                   </div>
                 </div>
-                <p className="text-base md:text-lg leading-relaxed text-stone-700">
+                <p className="text-base md:text-lg leading-relaxed text-stone-700 dark:text-stone-200">
                   {chunk.text_en}
                 </p>
               </div>
@@ -329,31 +331,31 @@ export default function ChapterModal({
               <div key={chunk.id} className="space-y-3">
                 <div className="flex items-center gap-2 px-1 ml-1">
                   <span className="text-xs font-medium text-amber-600">Verse {chunk.chunk_index}</span>
-                  <span className="text-xs text-stone-300">•</span>
+                  <span className="text-xs text-stone-300 dark:text-stone-600">•</span>
                   <span className="text-xs text-stone-400">{chunk.word_count} words</span>
                 </div>
                 <div className="grid md:grid-cols-2 gap-3 md:gap-4">
-                  <div className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
-                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
+                  <div className="bg-stone-50 dark:bg-stone-800 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100 dark:border-stone-700">
+                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200 dark:border-stone-600">
                       <div className="flex items-center gap-1.5">
                         <span className="text-sm">📜</span>
-                        <span className="text-xs font-medium text-stone-500">Hindi</span>
+                        <span className="text-xs font-medium text-stone-500 dark:text-stone-400">Hindi</span>
                       </div>
                       <CopyButton text={chunk.text_hi} />
                     </div>
-                    <p className="text-base md:text-lg leading-relaxed text-stone-800 font-serif">
+                    <p className="text-base md:text-lg leading-relaxed text-stone-800 dark:text-stone-100 font-serif">
                       {chunk.text_hi}
                     </p>
                   </div>
-                  <div className="bg-stone-50 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100">
-                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
+                  <div className="bg-stone-50 dark:bg-stone-800 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100 dark:border-stone-700">
+                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200 dark:border-stone-600">
                       <div className="flex items-center gap-1.5">
                         <span className="text-sm">📖</span>
-                        <span className="text-xs font-medium text-stone-500">English</span>
+                        <span className="text-xs font-medium text-stone-500 dark:text-stone-400">English</span>
                       </div>
                       <CopyButton text={chunk.text_en} />
                     </div>
-                    <p className="text-base md:text-lg leading-relaxed text-stone-700">
+                    <p className="text-base md:text-lg leading-relaxed text-stone-700 dark:text-stone-200">
                       {chunk.text_en}
                     </p>
                   </div>

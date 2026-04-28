@@ -1,3 +1,5 @@
+"use client";
+
 const features = [
   {
     title: "Semantic Search",
@@ -29,19 +31,21 @@ const stages = [
 
 import Image from "next/image";
 import ChaptersTable from "@/components/ChaptersTable";
-import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeProvider";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-800">
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-900 text-stone-800 dark:text-stone-100">
       {/* Mobile Navigation */}
-      <nav className="sticky top-0 z-50 lg:hidden border-b border-stone-200 bg-white/80 backdrop-blur-sm">
+      <nav className="sticky top-0 z-50 lg:hidden border-b border-stone-200 dark:border-stone-700 bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm">
         <div className="flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-orange-500" />
             <span className="font-light text-sm tracking-wide">Osho Ashtavakra</span>
           </div>
-          <details className="relative">
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <details className="relative">
             <summary className="list-none cursor-pointer p-2 -m-2 hover:bg-stone-100 rounded-lg transition-colors">
               <svg className="w-5 h-5 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -57,23 +61,25 @@ export default function Home() {
               <a href="https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-stone-600 hover:bg-stone-50">Kaggle</a>
             </div>
           </details>
+          </div>
         </div>
       </nav>
 
       {/* Desktop Header */}
-      <header className="sticky top-0 z-50 hidden lg:block border-b border-stone-200 bg-white/80 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 hidden lg:block border-b border-stone-200 dark:border-stone-700 bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500" />
             <span className="font-light tracking-wide">Osho's Ashtavakra MahaGita</span>
           </div>
-          <nav className="flex gap-6 text-sm text-stone-500">
-            <a href="#about" className="hover:text-stone-800 transition-colors">About</a>
-            <a href="#chapters" className="hover:text-stone-800 transition-colors">91 Lessons</a>
-            <a href="#features" className="hover:text-stone-800 transition-colors">Features</a>
-            <a href="#roadmap" className="hover:text-stone-800 transition-colors">Roadmap</a>
-            <a href="https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db" target="_blank" rel="noopener noreferrer" className="hover:text-stone-800 transition-colors">GitHub</a>
-            <a href="https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset" target="_blank" rel="noopener noreferrer" className="hover:text-stone-800 transition-colors">Kaggle</a>
+          <nav className="flex items-center gap-6 text-sm text-stone-500 dark:text-stone-400">
+            <a href="#about" className="hover:text-stone-800 dark:hover:text-stone-100 transition-colors">About</a>
+            <a href="#chapters" className="hover:text-stone-800 dark:hover:text-stone-100 transition-colors">91 Lessons</a>
+            <a href="#features" className="hover:text-stone-800 dark:hover:text-stone-100 transition-colors">Features</a>
+            <a href="#roadmap" className="hover:text-stone-800 dark:hover:text-stone-100 transition-colors">Roadmap</a>
+            <a href="https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db" target="_blank" rel="noopener noreferrer" className="hover:text-stone-800 dark:hover:text-stone-100 transition-colors">GitHub</a>
+            <a href="https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset" target="_blank" rel="noopener noreferrer" className="hover:text-stone-800 dark:hover:text-stone-100 transition-colors">Kaggle</a>
+            <ThemeToggle />
           </nav>
         </div>
       </header>
@@ -93,7 +99,7 @@ export default function Home() {
             <Image src="/image-1.webp" alt="Ashtavakra" width={100} height={100} className="rounded-xl h-[80px] md:h-[120px] lg:h-[150px] w-auto object-contain" />
             <Image src="/image.png" alt="Osho" width={100} height={100} className="rounded-xl h-[80px] md:h-[120px] lg:h-[150px] w-auto object-contain" />
           </div>
-          <p className="text-base md:text-xl text-stone-600 max-w-2xl mx-auto mb-4 font-light px-4">
+          <p className="text-base md:text-xl text-stone-600 dark:text-stone-300 max-w-2xl mx-auto mb-4 font-light px-4">
             A structured, AI-ready dataset of Ashtavakra MahaGita teachings based on the discourses of Osho.
           </p>
           <p className="text-stone-400 max-w-xl mx-auto mb-8 md:mb-12 px-4">
