@@ -21,7 +21,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="p-1.5 hover:bg-stone-200 rounded-md transition-colors"
+      className="p-1.5 hover:bg-stone-200 dark:hover:bg-stone-700 rounded-md transition-colors"
       aria-label="Copy to clipboard"
       title={copied ? "Copied!" : "Copy"}
     >
@@ -30,7 +30,7 @@ function CopyButton({ text }: { text: string }) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
         </svg>
       ) : (
-        <svg className="w-4 h-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="w-4 h-4 text-stone-400 dark:text-stone-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
         </svg>
       )}
@@ -71,14 +71,11 @@ export default function ChapterModal({
   const [chunks, setChunks] = useState<Chunk[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>("both");
-  const [activeTab, setActiveTab] = useState<"hindi" | "english">("hindi");
 
   // Fetch chapter data only if chapter has data
   useEffect(() => {
     if (!isOpen || !chapterNumber || !hasData) return;
 
-    setChunks([]);
-    setLoading(true);
     fetch(`/data/ch${chapterNumber.toString().padStart(2, "0")}.json`)
       .then((res) => res.json())
       .then((data) => {
@@ -135,10 +132,10 @@ return (
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="p-1.5 md:p-2 -ml-1 hover:bg-stone-100 rounded-lg transition-colors"
+            className="p-1.5 md:p-2 -ml-1 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors"
             aria-label="Close"
           >
-            <svg className="w-5 h-5 md:w-6 md:h-6 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5 md:w-6 md:h-6 text-stone-600 dark:text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -190,25 +187,25 @@ return (
           <button
             onClick={handlePrevChapter}
             disabled={chapterNumber <= 1}
-            className="p-1.5 md:p-2 hover:bg-stone-100 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="p-1.5 md:p-2 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             aria-label="Previous chapter"
           >
-            <svg className="w-5 h-5 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5 text-stone-600 dark:text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
-          <span className="text-xs md:text-sm text-stone-500 min-w-[60px] text-center hidden sm:inline">
+          <span className="text-xs md:text-sm text-stone-500 dark:text-stone-400 min-w-[60px] text-center hidden sm:inline">
             {chapterNumber}/91
           </span>
           
           <button
             onClick={handleNextChapter}
             disabled={chapterNumber >= 91}
-            className="p-1.5 md:p-2 hover:bg-stone-100 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="p-1.5 md:p-2 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             aria-label="Next chapter"
           >
-            <svg className="w-5 h-5 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5 text-stone-600 dark:text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -218,7 +215,7 @@ return (
       {/* Mobile Tab Bar - Only visible on mobile */}
       <div className="md:hidden flex-shrink-0 flex border-b border-stone-200 dark:border-stone-700 bg-stone-50 dark:bg-stone-800">
         <button
-          onClick={() => { setViewMode("both"); setActiveTab("hindi"); }}
+          onClick={() => setViewMode("both")}
           className={`flex-1 py-2 text-sm font-medium transition-colors ${
             viewMode === "both"
               ? "text-amber-600 border-b-2 border-amber-500 bg-white dark:bg-stone-700"
@@ -228,7 +225,7 @@ return (
           Both
         </button>
         <button
-          onClick={() => { setViewMode("hindi"); setActiveTab("hindi"); }}
+          onClick={() => setViewMode("hindi")}
           className={`flex-1 py-2 text-sm font-medium transition-colors ${
             viewMode === "hindi"
               ? "text-amber-600 border-b-2 border-amber-500 bg-white dark:bg-stone-700"
@@ -238,7 +235,7 @@ return (
           Hindi Only
         </button>
         <button
-          onClick={() => { setViewMode("english"); setActiveTab("english"); }}
+          onClick={() => setViewMode("english")}
           className={`flex-1 py-2 text-sm font-medium transition-colors ${
             viewMode === "english"
               ? "text-amber-600 border-b-2 border-amber-500 bg-white dark:bg-stone-700"
@@ -257,40 +254,40 @@ return (
             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center mb-6">
               <span className="text-4xl">🙏</span>
             </div>
-            <h2 className="text-xl md:text-2xl font-light text-stone-700 mb-2">
-              Chapter {chapterNumber}
-            </h2>
-            <p className="text-stone-500 mb-4">Coming Soon</p>
-            <div className="flex items-center gap-2 text-sm text-stone-400 mb-8">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              <span>In Progress</span>
-            </div>
+             <h2 className="text-xl md:text-2xl font-light text-stone-700 dark:text-stone-200 mb-2">
+               Chapter {chapterNumber}
+             </h2>
+             <p className="text-stone-500 dark:text-stone-400 mb-4">Coming Soon</p>
+             <div className="flex items-center gap-2 text-sm text-stone-400 dark:text-stone-500 mb-8">
+               <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+               <span>In Progress</span>
+             </div>
             <div className="flex items-center gap-4">
               <button
-                onClick={handlePrevChapter}
-                disabled={chapterNumber <= 1}
-                className="p-2 hover:bg-stone-100 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                aria-label="Previous chapter"
-              >
-                <svg className="w-5 h-5 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
+                 onClick={handlePrevChapter}
+                 disabled={chapterNumber <= 1}
+                 className="p-2 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                 aria-label="Previous chapter"
+               >
+                 <svg className="w-5 h-5 text-stone-600 dark:text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                 </svg>
+               </button>
               <button
-                onClick={handleNextChapter}
-                disabled={chapterNumber >= 91}
-                className="p-2 hover:bg-stone-100 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                aria-label="Next chapter"
-              >
-                <svg className="w-5 h-5 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+                 onClick={handleNextChapter}
+                 disabled={chapterNumber >= 91}
+                 className="p-2 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                 aria-label="Next chapter"
+               >
+                 <svg className="w-5 h-5 text-stone-600 dark:text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                 </svg>
+               </button>
             </div>
           </div>
         ) : loading ? (
           <div className="flex items-center justify-center h-full">
-            <div className="text-stone-400">Loading chapter {chapterNumber}...</div>
+            <div className="text-stone-400 dark:text-stone-500">Loading chapter {chapterNumber}...</div>
           </div>
         ) : (
           <div className="p-3 md:p-4 space-y-3 md:space-y-4">

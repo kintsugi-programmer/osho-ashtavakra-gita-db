@@ -46,19 +46,19 @@ export default function Home() {
           <div className="flex items-center gap-1">
             <ThemeToggle />
             <details className="relative">
-            <summary className="list-none cursor-pointer p-2 -m-2 hover:bg-stone-100 rounded-lg transition-colors">
-              <svg className="w-5 h-5 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <summary className="list-none cursor-pointer p-2 -m-2 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors">
+              <svg className="w-5 h-5 text-stone-600 dark:text-stone-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </summary>
-            <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-stone-200 py-2 space-y-1">
-              <a href="#about" className="block px-4 py-2 text-sm text-stone-600 hover:bg-stone-50">About</a>
-              <a href="#chapters" className="block px-4 py-2 text-sm text-stone-600 hover:bg-stone-50">91 Lessons</a>
-              <a href="#features" className="block px-4 py-2 text-sm text-stone-600 hover:bg-stone-50">Features</a>
-              <a href="#roadmap" className="block px-4 py-2 text-sm text-stone-600 hover:bg-stone-50">Roadmap</a>
-              <hr className="my-2 border-stone-100" />
-              <a href="https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-stone-600 hover:bg-stone-50">GitHub</a>
-              <a href="https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-stone-600 hover:bg-stone-50">Kaggle</a>
+            <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-stone-800 rounded-lg shadow-lg border border-stone-200 dark:border-stone-700 py-2 space-y-1">
+              <a href="#about" className="block px-4 py-2 text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700">About</a>
+              <a href="#chapters" className="block px-4 py-2 text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700">91 Lessons</a>
+              <a href="#features" className="block px-4 py-2 text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700">Features</a>
+              <a href="#roadmap" className="block px-4 py-2 text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700">Roadmap</a>
+              <hr className="my-2 border-stone-100 dark:border-stone-700" />
+              <a href="https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700">GitHub</a>
+              <a href="https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm text-stone-600 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-700">Kaggle</a>
             </div>
           </details>
           </div>
@@ -70,7 +70,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500" />
-            <span className="font-light tracking-wide">Osho's Ashtavakra MahaGita</span>
+            <span className="font-light tracking-wide">Osho&apos;s Ashtavakra MahaGita</span>
           </div>
           <nav className="flex items-center gap-6 text-sm text-stone-500 dark:text-stone-400">
             <a href="#about" className="hover:text-stone-800 dark:hover:text-stone-100 transition-colors">About</a>
@@ -86,7 +86,7 @@ export default function Home() {
 
       <main>
         <section className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-1.5 rounded-full border border-stone-200 text-xs text-stone-500 mb-6 md:mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-1.5 rounded-full border border-stone-200 dark:border-stone-700 text-xs text-stone-500 dark:text-stone-400 mb-6 md:mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500" />
             <span className="hidden sm:inline">Now building Phase 2 — Translation Layer</span>
             <span className="sm:hidden">Phase 2: Translation</span>
@@ -115,7 +115,7 @@ export default function Home() {
             </a>
             <a
               href="#features"
-              className="px-5 md:px-6 py-2.5 md:py-3 bg-stone-800 text-white rounded-full text-sm font-medium hover:bg-stone-900 transition-colors"
+               className="px-5 md:px-6 py-2.5 md:py-3 bg-stone-800 dark:bg-stone-700 text-white rounded-full text-sm font-medium hover:bg-stone-900 dark:hover:bg-stone-600 transition-colors"
             >
               <span>Features</span>
             </a>
@@ -123,7 +123,7 @@ export default function Home() {
               href="https://www.kaggle.com/datasets/siddhantbaliwork/osho-ashtavakra-gita-nlp-dataset"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 md:px-6 py-2.5 md:py-3 border border-stone-300 text-stone-700 rounded-full text-sm font-medium hover:border-stone-400 hover:bg-stone-50 transition-colors"
+               className="px-5 md:px-6 py-2.5 md:py-3 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 rounded-full text-sm font-medium hover:border-stone-400 dark:hover:border-stone-500 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
               <span>Kaggle Data</span>
             </a>
@@ -131,30 +131,30 @@ export default function Home() {
               href="https://github.com/kintsugi-programmer/osho-ashtavakra-gita-db"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 md:px-6 py-2.5 md:py-3 border border-stone-300 text-stone-700 rounded-full text-sm font-medium hover:border-stone-400 hover:bg-stone-50 transition-colors"
+               className="px-5 md:px-6 py-2.5 md:py-3 border border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 rounded-full text-sm font-medium hover:border-stone-400 dark:hover:border-stone-500 hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors"
             >
               <span>GitHub Code</span>
             </a>
           </div>
         </section>
 
-        <section id="about" className="border-t border-stone-200 py-8 md:py-16">
+        <section id="about" className="border-t border-stone-200 dark:border-stone-700 py-8 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6">
             <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
               <div>
                 <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-4 md:mb-6">About the Project</h2>
-                <p className="text-stone-600 leading-relaxed mb-4 md:mb-6">
+                 <p className="text-stone-600 dark:text-stone-300 leading-relaxed mb-4 md:mb-6">
                   This project transforms raw Hindi discourse text into a clean, structured corpus 
                   suitable for modern AI applications. Based on Osho&apos;s profound teachings on the 
                   Ashtavakra MahaGita.
                 </p>
-                <p className="text-stone-600 leading-relaxed">
+                 <p className="text-stone-600 dark:text-stone-300 leading-relaxed">
                   The current focus is on building a robust data foundation layer — ensuring 
                   high-quality chunking and consistency before moving to translation and AI layers.
                 </p>
               </div>
-              <div className="bg-white rounded-2xl p-4 md:p-8 border border-stone-200 shadow-sm overflow-x-auto">
-                <pre className="text-xs md:text-sm text-stone-600 leading-relaxed whitespace-pre">{`{
+               <div className="bg-white dark:bg-stone-800 rounded-2xl p-4 md:p-8 border border-stone-200 dark:border-stone-700 shadow-sm overflow-x-auto">
+                 <pre className="text-xs md:text-sm text-stone-600 dark:text-stone-300 leading-relaxed whitespace-pre">{`{
   "id": "AAG_C01_P001",
   "chapter_no": 1,
   "chunk_index": 1,
@@ -167,36 +167,36 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="chapters" className="border-t border-stone-200 py-12 md:py-20 bg-gradient-to-b from-white to-amber-50/30">
+        <section id="chapters" className="border-t border-stone-200 dark:border-stone-700 py-12 md:py-20 bg-gradient-to-b from-white to-amber-50/30 dark:from-stone-900 dark:to-stone-800/40">
           <div className="max-w-5xl mx-auto px-4 md:px-6">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight text-center mb-4">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-600 to-amber-600">91 Lessons</span>
             </h2>
-            <p className="text-stone-500 text-center mb-8 md:mb-12 max-w-lg mx-auto">
+             <p className="text-stone-500 dark:text-stone-400 text-center mb-8 md:mb-12 max-w-lg mx-auto">
               Dive into the profound wisdom of Ashtavakra MahaGita through 91 transformative chapters
             </p>
             <ChaptersTable />
           </div>
         </section>
 
-        <section id="features" className="border-t border-stone-200 py-8 md:py-16">
+        <section id="features" className="border-t border-stone-200 dark:border-stone-700 py-8 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6">
             <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-8 md:mb-12 text-center">Features</h2>
             <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
               {features.map((feature) => (
                 <div
                   key={feature.title}
-                  className="p-4 md:p-6 rounded-xl bg-white border border-stone-200 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <h3 className="text-base md:text-lg font-medium mb-2">{feature.title}</h3>
-                  <p className="text-stone-500 text-sm">{feature.description}</p>
-                </div>
+                   className="p-4 md:p-6 rounded-xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-sm hover:shadow-md transition-shadow"
+                 >
+                   <h3 className="text-base md:text-lg font-medium mb-2">{feature.title}</h3>
+                   <p className="text-stone-500 dark:text-stone-400 text-sm">{feature.description}</p>
+                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="roadmap" className="border-t border-stone-200 py-8 md:py-16">
+        <section id="roadmap" className="border-t border-stone-200 dark:border-stone-700 py-8 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6">
             <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-8 md:mb-12 text-center">Roadmap</h2>
             <div className="max-w-xl mx-auto space-y-3 md:space-y-4">
@@ -214,10 +214,10 @@ export default function Home() {
                   <span
                     className={`text-sm ${
                       stage.status === "done"
-                        ? "text-stone-700"
+                        ? "text-stone-700 dark:text-stone-200"
                         : stage.status === "progress"
-                        ? "text-amber-700"
-                        : "text-stone-400"
+                        ? "text-amber-700 dark:text-amber-400"
+                        : "text-stone-400 dark:text-stone-500"
                     }`}
                   >
                     {stage.text}
@@ -228,17 +228,17 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-stone-200 py-8 md:py-16">
+        <section className="border-t border-stone-200 dark:border-stone-700 py-8 md:py-16">
           <div className="max-w-5xl mx-auto px-4 md:px-6 text-center">
             <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-4 md:mb-6">Architecture Vision</h2>
-            <p className="text-stone-500 mb-6 md:mb-8 px-4">Consistency at the data layer is critical for everything downstream.</p>
-            <div className="inline-flex flex-wrap items-center justify-center gap-1 md:gap-3 px-4 md:px-6 py-3 rounded-xl bg-white border border-stone-200 shadow-sm font-mono text-xs md:text-sm">
-              <span className="text-stone-400">RAW TEXT</span>
-              <span className="text-stone-300">→</span>
-              <span className="text-stone-400">DATA</span>
-              <span className="text-stone-300">→</span>
-              <span className="text-stone-400">EMBED</span>
-              <span className="text-stone-300">→</span>
+            <p className="text-stone-500 dark:text-stone-400 mb-6 md:mb-8 px-4">Consistency at the data layer is critical for everything downstream.</p>
+            <div className="inline-flex flex-wrap items-center justify-center gap-1 md:gap-3 px-4 md:px-6 py-3 rounded-xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 shadow-sm font-mono text-xs md:text-sm">
+              <span className="text-stone-400 dark:text-stone-500">RAW TEXT</span>
+              <span className="text-stone-300 dark:text-stone-600">→</span>
+              <span className="text-stone-400 dark:text-stone-500">DATA</span>
+              <span className="text-stone-300 dark:text-stone-600">→</span>
+              <span className="text-stone-400 dark:text-stone-500">EMBED</span>
+              <span className="text-stone-300 dark:text-stone-600">→</span>
               <span className="text-amber-600">AI</span>
             </div>
           </div>
@@ -246,7 +246,7 @@ export default function Home() {
 
       </main>
 
-      <footer className="border-t border-stone-200">
+      <footer className="border-t border-stone-200 dark:border-stone-700">
         <div className="max-w-5xl mx-auto px-4 md:px-6 py-6 md:py-8 space-y-3 md:space-y-4">
           <div className="flex flex-wrap justify-center gap-x-2 gap-y-1 text-sm">
             <span className="text-stone-400">Open Source • MIT License</span>
@@ -254,7 +254,7 @@ export default function Home() {
             <span className="text-stone-400">Not affiliated with Osho org</span>
           </div>
           <div className="text-center text-xs md:text-sm text-stone-400 px-4">
-            Original texts: <a href="https://oshoworld.com/maha-geeta-by-osho-01-91" target="_blank" rel="noopener noreferrer" className="underline hover:text-stone-600">oshoworld.com</a>
+            Original texts: <a href="https://oshoworld.com/maha-geeta-by-osho-01-91" target="_blank" rel="noopener noreferrer" className="underline hover:text-stone-600 dark:hover:text-stone-200">oshoworld.com</a>
           </div>
         </div>
       </footer>

@@ -42,7 +42,7 @@ export default function ChaptersTable() {
 
   if (loading) {
     return (
-      <div className="text-center py-8 text-stone-400">
+      <div className="text-center py-8 text-stone-400 dark:text-stone-500">
         Loading chapters...
       </div>
     );
@@ -55,21 +55,21 @@ export default function ChaptersTable() {
     <div className="space-y-6">
       {/* Guided instruction text */}
       <div className="text-center px-4">
-        <p className="text-stone-600 text-sm md:text-base">
+        <p className="text-stone-600 dark:text-stone-300 text-sm md:text-base">
           Click any chapter below to read its verses
         </p>
-        <p className="text-stone-400 text-xs mt-1">
+        <p className="text-stone-400 dark:text-stone-500 text-xs mt-1">
           Use ← → arrows or buttons to navigate between lessons
         </p>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-sm px-4">
-        <span className="text-stone-500">{chapters.length} / 91</span>
-        <span className="text-stone-300 hidden sm:inline">•</span>
+        <span className="text-stone-500 dark:text-stone-400">{chapters.length} / 91</span>
+        <span className="text-stone-300 dark:text-stone-600 hidden sm:inline">•</span>
         <span className="text-amber-600 font-medium">{completion}%</span>
         <span className="inline-flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-green-500" />
-          <span className="text-stone-500 text-xs hidden sm:inline">ai_draft</span>
+          <span className="text-stone-500 dark:text-stone-400 text-xs hidden sm:inline">ai_draft</span>
         </span>
       </div>
 
@@ -81,15 +81,15 @@ export default function ChaptersTable() {
 
           if (!exists) {
             return (
-              <button
-                key={num}
-                onClick={() => handleChapterClick(num)}
-                className="py-2 md:py-4 px-1 md:px-2 text-center text-xs text-stone-400 bg-stone-100/50 border border-dashed border-stone-300 rounded md:rounded-lg cursor-pointer hover:bg-amber-100 hover:border-amber-400 hover:text-amber-700 hover:border-double transition-all group"
-              >
-                <span className="hidden sm:inline">
-                  <span className="block text-[10px] text-stone-400 group-hover:text-amber-600">Ch. {num}</span>
-                  <span className="block text-[9px] mt-0.5 uppercase tracking-wider opacity-60 group-hover:opacity-100">Coming Soon</span>
-                </span>
+                <button
+                  key={num}
+                  onClick={() => handleChapterClick(num)}
+                  className="py-2 md:py-4 px-1 md:px-2 text-center text-xs text-stone-400 dark:text-stone-500 bg-stone-100/50 dark:bg-stone-800/60 border border-dashed border-stone-300 dark:border-stone-700 rounded md:rounded-lg cursor-pointer hover:bg-amber-100 dark:hover:bg-amber-950/30 hover:border-amber-400 dark:hover:border-amber-700 hover:text-amber-700 dark:hover:text-amber-400 hover:border-double transition-all group"
+                >
+                  <span className="hidden sm:inline">
+                    <span className="block text-[10px] text-stone-400 dark:text-stone-500 group-hover:text-amber-600 dark:group-hover:text-amber-400">Ch. {num}</span>
+                    <span className="block text-[9px] mt-0.5 uppercase tracking-wider opacity-60 group-hover:opacity-100">Coming Soon</span>
+                  </span>
                 <span className="sm:hidden font-medium">Ch. {num}</span>
               </button>
             );
@@ -113,6 +113,7 @@ export default function ChaptersTable() {
 
       {/* Reading Modal */}
       <ChapterModal
+        key={selectedChapter ?? "none"}
         chapterNumber={selectedChapter || 0}
         isOpen={selectedChapter !== null}
         onClose={handleClose}
