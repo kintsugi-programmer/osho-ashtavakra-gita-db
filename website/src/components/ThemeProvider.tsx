@@ -45,19 +45,19 @@ export function useTheme() {
 
 export function ThemeToggle({ className = "" }: { className?: string }) {
   const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // Don't render during SSR to avoid hydration mismatch
-  if (typeof window === "undefined") {
-    return null;
-  }
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={mounted ? toggleTheme : undefined}
       className={`p-2 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg transition-colors ${className}`}
-      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      aria-label={mounted ? `Switch to ${theme === "light" ? "dark" : "light"} mode` : "Toggle theme"}
     >
-      {theme === "light" ? (
+      {!mounted || theme === "light" ? (
         <svg className="w-5 h-5 text-stone-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
         </svg>

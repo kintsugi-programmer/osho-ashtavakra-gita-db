@@ -148,6 +148,18 @@ return (
               </h1>
               <p className="text-xs text-stone-500 dark:text-stone-400 hidden sm:block">
                 {chunks.length} chunks • ~{totalWords} words
+                <span className="mx-1.5">•</span>
+                <a
+                  href={`https://oshoworld.com/ashtavakra-maha-geeta-${chapterNumber.toString().padStart(2, "0")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-600 hover:text-amber-700 dark:text-amber-500 dark:hover:text-amber-400 hover:underline inline-flex items-center gap-0.5"
+                >
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                  </svg>
+                  Audio
+                </a>
               </p>
             </div>
           </div>
@@ -260,8 +272,19 @@ return (
              <p className="text-stone-500 dark:text-stone-400 mb-4">Coming Soon</p>
              <div className="flex items-center gap-2 text-sm text-stone-400 dark:text-stone-500 mb-8">
                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-               <span>In Progress</span>
-             </div>
+              <span>In Progress</span>
+              </div>
+            <a
+              href={`https://oshoworld.com/ashtavakra-maha-geeta-${chapterNumber.toString().padStart(2, "0")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm text-amber-600 hover:text-amber-700 dark:text-amber-500 dark:hover:text-amber-400 hover:underline transition-colors mb-4"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+              </svg>
+              Listen to Official Audio
+            </a>
             <div className="flex items-center gap-4">
               <button
                  onClick={handlePrevChapter}
@@ -291,6 +314,20 @@ return (
           </div>
         ) : (
           <div className="p-3 md:p-4 space-y-3 md:space-y-4">
+            {/* Audio Link at Top */}
+            <div className="text-center">
+              <a
+                href={`https://oshoworld.com/ashtavakra-maha-geeta-${chapterNumber.toString().padStart(2, "0")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs text-amber-600 hover:text-amber-700 dark:text-amber-500 dark:hover:text-amber-400 hover:underline transition-colors"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                </svg>
+                Listen to Official Audio Recording
+              </a>
+            </div>
             {/* Hindi Only View */}
             {viewMode === "hindi" && chunks.map((chunk) => (
               <div key={chunk.id} className="bg-stone-50 dark:bg-stone-800 rounded-xl p-4 md:p-5 shadow-sm border border-stone-100 dark:border-stone-700">
@@ -359,6 +396,24 @@ return (
                 </div>
               </div>
             ))}
+
+          {/* Audio Footer */}
+          <div className="border-t border-stone-200 dark:border-stone-700 pt-6 pb-4 mt-8 text-center">
+            <a
+              href={`https://oshoworld.com/ashtavakra-maha-geeta-${chapterNumber.toString().padStart(2, "0")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-stone-100 dark:bg-stone-800 hover:bg-amber-50 dark:hover:bg-amber-950/30 border border-stone-200 dark:border-stone-700 hover:border-amber-400 dark:hover:border-amber-700 rounded-lg text-sm text-stone-600 dark:text-stone-300 hover:text-amber-700 dark:hover:text-amber-400 transition-all"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+              </svg>
+              Listen to Official Audio Recording
+              <svg className="w-3.5 h-3.5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
           </div>
         )}
       </div>
